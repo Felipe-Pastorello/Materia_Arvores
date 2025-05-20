@@ -13,4 +13,16 @@ public class Arvore {
         if (node == null) return 0;
         return 1 + contarNos(node.esquerda) + contarNos(node.direita);
     }
+
+    public void percorrerPreOrdem() {
+        percorrerPreOrdem(raiz);
+    }
+
+    private void percorrerPreOrdem(No node) {
+        if (node == null) return;
+
+        System.out.print(node.valor + " "); // Visita o nó
+        percorrerPreOrdem(node.esquerda);   // Vai para a subárvore esquerda
+        percorrerPreOrdem(node.direita);    // Vai para a subárvore direita
+    }
 }
