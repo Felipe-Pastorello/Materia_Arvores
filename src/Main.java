@@ -12,5 +12,7 @@ public class Main {
         System.out.println("Quantidade de nós: " + arvore.contarNos());
 
         arvore.percorrerPreOrdem();
+        System.out.println("\n");
+        arvore.percorrerEmOrdem();
     }
 }

@@ -25,4 +25,16 @@ public class Arvore {
         percorrerPreOrdem(node.esquerda);   // Vai para a subárvore esquerda
         percorrerPreOrdem(node.direita);    // Vai para a subárvore direita
     }
+
+    public void percorrerEmOrdem() {
+        percorrerEmOrdem(raiz);
+    }
+
+    private void percorrerEmOrdem(No node) {
+        if (node == null) return;
+
+        percorrerEmOrdem(node.esquerda);     // Primeiro visita a subárvore esquerda
+        System.out.print(node.valor + " ");  // Depois visita o nó atual
+        percorrerEmOrdem(node.direita);      // Por fim, visita a subárvore direita
+    }
 }
