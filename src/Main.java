@@ -11,8 +11,23 @@ public class Main {
 
         System.out.println("Quantidade de nós: " + arvore.contarNos());
 
+        System.out.println("Pré Ordem");
         arvore.percorrerPreOrdem();
         System.out.println("\n");
+        System.out.println("Em Ordem");
         arvore.percorrerEmOrdem();
+        System.out.println("\n");
+        System.out.println("Pós Ordem");
+        arvore.percorrerPosOrdem();
+        System.out.println("\n");
+        System.out.println("Pré Ordem Iterativo");
+        arvore.percorrerPreOrdemIterativo();
+        System.out.println("\n");
+        System.out.println("Em Ordem Iterativo");
+        arvore.percorrerEmOrdemIterativo();
+        System.out.println("\n");
+        System.out.println("Pós Ordem Iterativo");
+        arvore.percorrerPosOrdemIterativo();
+
     }
 }
