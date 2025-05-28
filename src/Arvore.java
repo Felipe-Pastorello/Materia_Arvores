@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Arvore {
@@ -47,17 +49,21 @@ public class Arvore {
     private void percorrerPosOrdem(No node) {
         if (node == null) return;
 
-        percorrerPosOrdem(node.esquerda);
-        percorrerPosOrdem(node.direita); // Visita a subárvore esquerda
+        percorrerPosOrdem(node.esquerda); // Visita a subárvore esquerda
+        percorrerPosOrdem(node.direita);  // Visita a subárvore direita
         System.out.print(node.valor + " ");  // Visita o nó atual
-             // Visita a subárvore direita
+
     }
 
     public void percorrerPreOrdemIterativo() {
-        if (raiz == null) return;
+        percorrerPreOrdemIterativo(raiz);
+    }
+
+    public void percorrerPreOrdemIterativo(No node) {
+        if (node == null) return;
 
         Stack<No> pilha = new Stack<>();
-        pilha.push(raiz);
+        pilha.push(node);
 
         while (!pilha.isEmpty()) { //Enquanto a pilha não estiver vazia
             No atual = pilha.pop(); //Retira atual
@@ -70,10 +76,14 @@ public class Arvore {
     }
 
     public void percorrerEmOrdemIterativo() {
-        if (raiz == null) return;
+        percorrerEmOrdemIterativo(raiz);
+    }
+
+    public void percorrerEmOrdemIterativo(No node) {
+        if (node == null) return;
 
         Stack<No> pilha = new Stack<>();
-        No atual = raiz;
+        No atual = node;
 
         while (atual != null || !pilha.isEmpty()) {
             while (atual != null){ //Repete até chegar em um nó null
@@ -91,26 +101,93 @@ public class Arvore {
     }
 
     public void percorrerPosOrdemIterativo() {
-        if (raiz == null) return;
+        percorrerPosOrdemIterativo(raiz);
+    }
 
-        Stack<No> pilha = new Stack<>();
-        No atual = raiz;
+    public void percorrerPosOrdemIterativo(No node) {
+        if (node == null) return;
 
-        while (atual != null || !pilha.isEmpty()) {
-            while (atual != null){
-                pilha.push(atual);
-                atual = atual.esquerda;
-                pilha.push(atual);
-                atual = atual.direita;
-                pilha.push(atual);
-                atual = atual.esquerda;
-                pilha.push(atual);
+        Stack<No> pilha1 = new Stack<>();
+        Stack<No> pilha2 = new Stack<>();
+        pilha1.push(node);
+
+        while (!pilha1.isEmpty()) { //Enquanto a pilha 1 não estiver vazia
+            No atual = pilha1.pop(); //Retira o primeiro
+            pilha2.push(atual);
+
+
+            if (atual.esquerda != null) pilha1.push(atual.esquerda);
+            if (atual.direita != null) pilha1.push(atual.direita); //É o último, para ser retirado antes da esquerda. Porque começará pelo lado da esquerda
+        }
+
+
+
+        while (!pilha2.isEmpty()) {
+            System.out.print(pilha2.pop().valor + " ");
+        }
+    }
+
+    public void buscaEmNivel() {
+        buscaEmNivel(raiz);
+    }
+
+    public void buscaEmNivel(No node){
+        if (node == null) return;
+
+        Queue<No> fila = new LinkedList<>();
+        fila.add(node);
+
+        while (!fila.isEmpty()){
+            No atual = fila.poll();
+            System.out.println(atual.valor + " ");
+
+            if (atual.esquerda != null) fila.add(atual.esquerda);
+            if (atual.direita != null) fila.add(atual.direita);
+        }
+    }
+
+    public int nosFolha() {
+        return nosFolha(raiz);
+    }
+
+    public int nosFolha(No node){
+        if (node == null) return 0;
+
+        Queue<No> fila = new LinkedList<>();
+        fila.add(node);
+        int n = 0;
+
+        while (!fila.isEmpty()){
+            No atual = fila.poll();
+
+            if (atual.esquerda == null && atual.direita == null){
+                n++;
             }
-
-            atual = pilha.pop();
-
-            System.out.print(atual.valor + " ");
+            if (atual.esquerda != null) fila.add(atual.esquerda);
+            if (atual.direita != null) fila.add(atual.direita);
 
         }
+        return n;
+    }
+
+    public int contarNosIterativo() {
+        return contarNosIterativo(raiz);
+    }
+
+    public int contarNosIterativo(No node){
+        if (node == null) return 0;
+
+        Queue<No> fila = new LinkedList<>();
+        fila.add(node);
+        int n = 0;
+
+        while (!fila.isEmpty()){
+            No atual = fila.poll();
+            n++;
+
+            if (atual.esquerda != null) fila.add(atual.esquerda);
+            if (atual.direita != null) fila.add(atual.direita);
+        }
+        return n;
     }
 }

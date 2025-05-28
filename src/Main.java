@@ -28,6 +28,14 @@ public class Main {
         System.out.println("\n");
         System.out.println("Pós Ordem Iterativo");
         arvore.percorrerPosOrdemIterativo();
-
+        System.out.println("\n");
+        System.out.println("Nível");
+        arvore.buscaEmNivel();
+        System.out.println("\n");
+        System.out.println("Contar nós Iterativo");
+        System.out.println(arvore.contarNosIterativo());
+        System.out.println("\n");
+        System.out.println("Folhas");
+        System.out.println(arvore.nosFolha());
     }
 }
