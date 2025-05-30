@@ -190,4 +190,25 @@ public class Arvore {
         }
         return n;
     }
+
+    public int contarNosPilha() {
+        return contarNosPilha(raiz);
+    }
+
+    public int contarNosPilha(No node){
+        if (node == null) return 0;
+
+        Stack<No> fila = new Stack<>();
+        fila.add(node);
+        int n = 0;
+
+        while (!fila.isEmpty()){
+            No atual = fila.pop();
+            n++;
+
+            if (atual.esquerda != null) fila.add(atual.esquerda);
+            if (atual.direita != null) fila.add(atual.direita);
+        }
+        return n;
+    }
 }

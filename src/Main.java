@@ -35,6 +35,9 @@ public class Main {
         System.out.println("Contar nós Iterativo");
         System.out.println(arvore.contarNosIterativo());
         System.out.println("\n");
+        System.out.println("Contar nós Pilha");
+        System.out.println(arvore.contarNosPilha());
+        System.out.println("\n");
         System.out.println("Folhas");
         System.out.println(arvore.nosFolha());
     }
