@@ -1,6 +1,8 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        No raiz = new No("A");
+        /*No raiz = new No("A");
         raiz.esquerda = new No("B");
         raiz.direita = new No("C");
         raiz.esquerda.esquerda = new No("D");
@@ -39,6 +41,13 @@ public class Main {
         System.out.println(arvore.contarNosPilha());
         System.out.println("\n");
         System.out.println("Folhas");
-        System.out.println(arvore.nosFolha());
+        System.out.println(arvore.nosFolha());*/
+
+        ArvoreAVL avl = new ArvoreAVL();
+
+        System.out.println("Escreva o valor:");
+        Scanner sc = new Scanner(System.in);
+        int valor = sc.nextInt();
+        avl.inserir(valor);
     }
 }

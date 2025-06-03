@@ -162,7 +162,7 @@ public class Arvore {
 
             if (atual.esquerda == null && atual.direita == null){
                 n++;
-            }
+            } //Se não tiver filhos
             if (atual.esquerda != null) fila.add(atual.esquerda);
             if (atual.direita != null) fila.add(atual.direita);
 
@@ -198,16 +198,16 @@ public class Arvore {
     public int contarNosPilha(No node){
         if (node == null) return 0;
 
-        Stack<No> fila = new Stack<>();
-        fila.add(node);
+        Stack<No> pilha = new Stack<>();
+        pilha.add(node);
         int n = 0;
 
-        while (!fila.isEmpty()){
-            No atual = fila.pop();
+        while (!pilha.isEmpty()){
+            No atual = pilha.pop();
             n++;
 
-            if (atual.esquerda != null) fila.add(atual.esquerda);
-            if (atual.direita != null) fila.add(atual.direita);
+            if (atual.esquerda != null) pilha.add(atual.esquerda);
+            if (atual.direita != null) pilha.add(atual.direita);
         }
         return n;
     }
