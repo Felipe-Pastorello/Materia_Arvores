@@ -1,11 +1,11 @@
 public class ArvoreAVL {
-    private NoAVL raiz;
+    NoAVL raiz;
 
     public void inserir(int valor) {
         raiz = inserir(raiz, valor);
     }
 
-    private NoAVL inserir(NoAVL node, int valor) {
+    NoAVL inserir(NoAVL node, int valor) {
         if (node == null) return new NoAVL(valor);
 
         if (valor < node.valor)
@@ -28,9 +28,20 @@ public class ArvoreAVL {
             return rotacaoDireita(node);
 
         // Caso Direita-Direita (RR)
-
+        if (b < -1 && valor > node.direita.valor)
+            return rotacaoEsquerda(node);
 
         // Caso Esquerda-Direita (LR)
+        if (b > 1 && valor > node.esquerda.valor) {
+            node.esquerda = rotacaoEsquerda(node.esquerda);
+            return rotacaoDireita(node);
+        }
+
+        // Caso Direita-Esquerda (RL)
+        if (b < -1 && valor < node.direita.valor) {
+            node.direita = rotacaoDireita(node.direita);
+            return rotacaoEsquerda(node);
+        }
 
         return node;
     }
@@ -67,5 +78,18 @@ public class ArvoreAVL {
         y.altura = 1 + Math.max(altura(y.esquerda), altura(y.direita));
 
         return y;
+    }
+
+    public void imprimirEmOrdem() {
+        imprimirEmOrdem(raiz);
+        System.out.println();
+    }
+
+    public void imprimirEmOrdem(NoAVL node) {
+        if (node != null) {
+            imprimirEmOrdem(node.esquerda);
+            System.out.print(node.valor + " ");
+            imprimirEmOrdem(node.direita);
+        }
     }
 }

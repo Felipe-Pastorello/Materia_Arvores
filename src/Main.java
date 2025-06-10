@@ -45,9 +45,13 @@ public class Main {
 
         ArvoreAVL avl = new ArvoreAVL();
 
-        System.out.println("Escreva o valor:");
-        Scanner sc = new Scanner(System.in);
-        int valor = sc.nextInt();
-        avl.inserir(valor);
+        int[] chaves = {10, 20, 30, 40, 50, 25};
+
+        for (int chave : chaves){
+            avl.raiz = avl.inserir(avl.raiz, chave);
+        }
+
+        System.out.println("Percurso em ordem");
+        avl.imprimirEmOrdem(avl.raiz);
     }
 }
