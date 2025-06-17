@@ -41,7 +41,7 @@ public class Main {
         System.out.println(arvore.contarNosPilha());
         System.out.println("\n");
         System.out.println("Folhas");
-        System.out.println(arvore.nosFolha());*/
+        System.out.println(arvore.nosFolha());
 
         ArvoreAVL avl = new ArvoreAVL();
 
@@ -52,6 +52,18 @@ public class Main {
         }
 
         System.out.println("Percurso em ordem");
-        avl.imprimirEmOrdem(avl.raiz);
+        avl.imprimirEmOrdem(avl.raiz);*/
+
+        ArvoreRB arvore = new ArvoreRB();
+
+        arvore.inserirRB(10);
+        arvore.inserirRB(20);
+        arvore.inserirRB(30);
+        arvore.inserirRB(15);
+        arvore.inserirRB(5);
+        arvore.inserirRB(25);
+
+        System.out.print("Árvore em ordem: ");
+        arvore.imprimirEmOrdem();
     }
 }

@@ -14,11 +14,9 @@ public class ArvoreRB {
             node.direita = inserirRB(node.direita, valor);
         else
             return node;
-        // Altura
-        node.altura = 1 + Math.max(alturaRB(node.esquerda), alturaRB(node.direita)); //A função Math.max serve para achar o maior valor entre duas variáveis
 
-        // Balanceamento
-        int b = balanceamentoRB(node); //Ver a diferença de altura entre a esquerda e direita
+        /*node.altura = 1 + Math.max(alturaRB(node.esquerda), alturaRB(node.direita)); */
+
 
         // Rotações
 
@@ -33,47 +31,47 @@ public class ArvoreRB {
     }
 
     private boolean ehVermelho(NoRB node) {
-        if (node == null) return false;
-        return node.vermelho;
+        return node != null && node.cor == Cor.VERMELHO;
     }
 
     private void inverterCores(NoRB node) {
-        node.vermelho = true;
-        node.esquerda.vermelho = false;
-        node.direita.vermelho = false;
+        node.cor = Cor.VERMELHO;
+        node.esquerda.cor = Cor.PRETO;
+        node.direita.cor = Cor.PRETO;
     }
 
-    private int alturaRB(NoRB node) {
+    /*private int alturaRB(NoRB node) {
         return node == null ? 0 : node.altura;
-    }
+    }*/
 
-    private int balanceamentoRB(NoRB node) {
-        return node == null ? 0 : alturaRB(node.esquerda) - alturaRB(node.direita);
-    }
-
-    private NoRB rotacaoDireitaRB(NoRB y) {
-        NoRB x = y.esquerda;
-        NoRB T2 = x.direita;
-
-        x.direita = y;
-        y.esquerda = T2;
-
-        y.altura = 1 + Math.max(alturaRB(y.esquerda), alturaRB(y.direita));
-        x.altura = 1 + Math.max(alturaRB(x.esquerda), alturaRB(x.direita));
-
+    private NoRB rotacaoDireitaRB(NoRB node) {
+        NoRB x = node.esquerda;
+        node.esquerda = x.direita;
+        x.direita = node;
+        x.cor = node.cor;
+        node.cor = Cor.VERMELHO;
         return x;
     }
 
-    private NoRB rotacaoEsquerdaRB(NoRB x) {
-        NoRB y = x.direita;
-        NoRB T2 = y.esquerda;
+    private NoRB rotacaoEsquerdaRB(NoRB node) {
+        NoRB x = node.direita;
+        node.direita = x.esquerda;
+        x.esquerda = node;
+        x.cor = node.cor;
+        node.cor = Cor.VERMELHO;
+        return x;
+    }
 
-        y.esquerda = x;
-        x.direita = T2;
+    public void imprimirEmOrdem() {
+        imprimirEmOrdem(raiz);
+        System.out.println();
+    }
 
-        x.altura = 1 + Math.max(alturaRB(x.esquerda), alturaRB(x.direita));
-        y.altura = 1 + Math.max(alturaRB(y.esquerda), alturaRB(y.direita));
-
-        return y;
+    private void imprimirEmOrdem(NoRB node) {
+        if (node != null) {
+            imprimirEmOrdem(node.esquerda);
+            System.out.print(node.valor + (node.cor == Cor.VERMELHO ? "R " : "P "));
+            imprimirEmOrdem(node.direita);
+        }
     }
 }

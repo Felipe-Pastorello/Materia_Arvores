@@ -1,11 +1,11 @@
 public class NoRB {
-    int valor, altura;
+    int valor /*altura*/;
     NoRB esquerda, direita;
-    boolean vermelho;
+    Cor cor;
 
 
     public NoRB(int valor){
         this.valor = valor;
-        this.vermelho = true;
+        this.cor = Cor.VERMELHO;
     }
 }
